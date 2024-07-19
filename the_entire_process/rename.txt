@@ -1,0 +1,15 @@
+6371  10:08:08 rename("/home/czm/.openoffice/4/user/a0h9Ks", "/home/czm/.openoffice/4/user/registrymodifications.xcu") = 0
+6373  10:08:10 rename("/home/czm/.openoffice/4/user/zpr14S", "/home/czm/.openoffice/4/user/registrymodifications.xcu") = 0
+6377  10:08:12 rename("/home/czm/.openoffice/4/user/cEddEw", "/home/czm/.openoffice/4/user/registrymodifications.xcu") = 0
+6426  10:08:47 rename("/home/czm/.openoffice/4/user/mviwL6", "/home/czm/.openoffice/4/user/registrymodifications.xcu") = 0
+6428  10:08:48 rename("/home/czm/.openoffice/4/user/Ly4jtM", "/home/czm/.openoffice/4/user/registrymodifications.xcu") = 0
+6434  10:08:50 rename("/home/czm/.openoffice/4/user/1RGavI", "/home/czm/.openoffice/4/user/registrymodifications.xcu") = 0
+6492  10:09:11 rename("/home/czm/.openoffice/4/user/yjgokn", "/home/czm/.openoffice/4/user/registrymodifications.xcu") = 0
+6495  10:09:13 rename("/home/czm/.openoffice/4/user/YFC4JD", "/home/czm/.openoffice/4/user/registrymodifications.xcu") = 0
+6519  10:09:26 rename("/home/czm/.openoffice/4/user/NXyFA5", "/home/czm/.openoffice/4/user/registrymodifications.xcu") = 0
+6591  10:10:18 rename("/home/czm/.openoffice/4/user/W2HOva", "/home/czm/.openoffice/4/user/registrymodifications.xcu") = 0
+6628  10:10:40 rename("/home/czm/.openoffice/4/user/riQn9K", "/home/czm/.openoffice/4/user/registrymodifications.xcu") = 0
+6633  10:10:42 rename("/home/czm/.openoffice/4/user/5Fl5iC", "/home/czm/.openoffice/4/user/registrymodifications.xcu" <unfinished ...>
+6633  10:10:42 <... rename resumed>)    = 0
+6651  10:10:42 rename("/home/czm/.openoffice/4/user/0vWhVG", "/home/czm/.openoffice/4/user/registrymodifications.xcu") = 0
+6652  10:10:43 rename("/home/czm/.openoffice/4/user/DZA3kH", "/home/czm/.openoffice/4/user/registrymodifications.xcu") = 0
