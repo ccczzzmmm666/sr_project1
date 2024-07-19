@@ -33,7 +33,7 @@
 
 **测试结果分析**
 - FIGURE1：
-  <img src="Figure_1_addnotes.png" width="300" height="200"> 
+  <img src="Figure_1_addnotes.png" width="750" height="500"> 
   - 标题：[Syscall Frequency Over Time]
     这个图是在使用process_final.sh脚本运行的全过程当中涉及到的与I/O有关的syscall的频率图。
   - 横坐标是时间，整个进程是从10：08：03开始，转换成从第零秒开始。
@@ -62,7 +62,7 @@
                 某些操作系统和文件系统在文件被打开时不允许直接删除。通过先重命名文件，再在文件关闭后进行删除，可以绕过这些限制。这个方法确保了文件删除不会因文件被占用而失败。
     - 3. 仅在save过程中涉及到fsync，其余过程中都没有直接调用fsync。
 - FIGURE2:
-  <img src="Figure_4_all_r_w.png" width="300" height="200">
+  <img src="Figure_4_all_r_w.png" width="750" height="500">
   - 标题：[Total Data Read and Written]由于figure1显示大量的syscall都有关于读写，因此就单独分析了读取与写入的涉及到的数据量。
   - 横坐标：读取与写入这两种操作类型
   - 纵坐标：数据量
@@ -71,8 +71,8 @@
       - 在编辑PPT的时候，程序需要读取整个PPT文件的内容，这包括所有的幻灯片、图像、文本、图表、媒体文件等，以便在编辑器中呈现给用户。这个过程可能涉及大量的数据读取操作。
       - 编辑软件可能会将PPT的数据缓存到内存中，以便进行快速访问和编辑。这意味着在实际保存文件之前，许多操作都只在内存中进行，而不需要频繁写入磁盘。
       - PPT文件（特别是现代的PPTX格式）通常包含很多元数据和结构信息，这些信息在文件加载时需要读取，但是在保存时可能没有太多变化，只需要更新具体修改的部分。（具体可以看后面解压缩文件的结构）
-- FIGURE3:
-   <img src="figure6_r-1.png" width="300" height="200">
+- FIGURE3
+   <img src="figure6_r-1.png" width="750" height="500">
       	- 描述图的基本信息。比如标题，横纵坐标，图例
 	- 详细解释这张图的特征
 		- 为什么大体趋势是这样的（比如大部分都是读操作）
@@ -83,23 +83,23 @@
 	- 图像特征： 
 	  - 可以看出不管是任何操作都是以O_RDONLY为主，极少的是以0_RDWR方式打开。 
 - FIGURE3:
-   <img src="figure7_r-1.png" width="300" height="200">
+   <img src="figure7_r-1.png" width="750" height="500">
   - 标题：[Read/Write Distribution By Bytes]
   - 横坐标：操作类型
   - 纵坐标：不同打开方式的相对频率。每个条形图末端的数字表示在文件上涉及到的数据量总合
   - 图像特征：以仅读取方式打开的文件数据量占比最大，比较异常的是在save操作中，没有write only或者both read and writes 方式打开的文件。不知道是因为占比过少而无法可视化显示还是不涉及，我更偏向于前者，因为在save过程中调用了fsync。
 - FIGURE4:
-  <img src="Figure_3_all_type.png" width="300" height="200">
+  <img src="Figure_3_all_type.png" width="750" height="500">
   - 标题：[Total Count of Each File Type Opened]在运行process_final.sh的过程中所涉及到的所有文件类型。
   - 横坐标是文件类型 
   - 纵坐标是这类文件被访问的总次数
   - 图像特征：
     - 涉及到许多的文件类型，而非只涉及到一直编辑的.odp 因此我解压了所创建的.odp文件：
       - 在解压缩的过程中如图：（当打开 .odp 文件时,应用程序会自动解压缩这个 ZIP 包,并识别其中的各个组成部分。）
-       <img src="image-1.png" width="300" height="200"> 
+       <img src="image-1.png" width="750" height="500"> 
         &nbsp;&nbsp;有一些文件涉及到解压缩，有的只需要直接提取，有的则需要创建目录，之所以会有这样的差异,是因为 .odp 文件的内部结构是有目的性的设计的:一些元数据和小型资源文件可以直接存储在压缩包中,无需解压缩，而主要的内容文件则需要解压缩才能被应用程序读取和使用。为了更好地管理这些文件,还需要创建相应的目录结构。
       - 这个是我解压出来的文件结构：
-      - <img src="image.png" width="300" height="200">
+      - <img src="image.png" width="750" height="500">
       - .odp 文件中包含的主要组件有:
         mimetype: 指示文件的媒体类型。
         Thumbnails: 包含文档的缩略图。
@@ -113,7 +113,7 @@
         这种结构使得 OpenDocument 格式具有很强的可扩展性和灵活性。比如在我修改.odp文件的时候，应用程序会自动跟踪我对各个子文件的操作，在保存的时候生成一个新的zip压缩包
     - 涉及到最多的文件类型是.tmp。原因是应用程序在执行复杂操作的时候会先把文件写入临时文件(.tmp)当完整的操作都实现了之后再把(.tmp)中的数据转移到最终的目标位置，一旦过程中出现任何错误和异常就可以直接丢弃这个临时文件，从而这样可以保证原子性原则，即不存在中间态。
 - FIGURE4:
-  <img src="figure2_re-1.png" width="300" height="200">
+  <img src="figure2_re-1.png" width="750" height="500">
   - 标题：[File Type Access Percentage]我将figure3涉及到的文件类型按照论文中提到的分类方式进行了划分：
         "multimedia": [],
         "productivity": ['.txt', '.odt', '.odp', '.ttf'],
@@ -128,7 +128,7 @@
     - sqlite类型的文件占比最多，others占比高的部分原因是我将.tmp归类到了others。
 
 - FIGURE5:
-   <img src="figure8_r-1.png" width="300" height="200"> 
+   <img src="figure8_r-1.png" width="750" height="500"> 
    - 标题： [File Read Access Pattern] 
    - 横坐标：操作类型
    - 纵坐标：顺序访问和非顺序访问的数据量占比百分比。顶部数据是总访问的数据量。
@@ -140,7 +140,7 @@
         - 值得注意的是：原论文当中还引入了nearly-sequential的概念，当至少95%的字节读取或写入文件顺序运行时，作者将对文件的访问定义为“nearly-sequential”，但是我的图表里面没有进行这一步的划分，所以可能会导致大部分nearly-sequential被划分成non-sequential。
    - 
 - FIGURE6:
-   <img src="figure9_r-1.png" width="300" height="200"> 
+   <img src="figure9_r-1.png" width="750" height="500"> 
    - 标题： [File Write Access Pattern] 
    - 横坐标：操作类型
    - 纵坐标：顺序访问和非顺序访问的数据量占比百分比。顶部数据是总访问的数据量。
@@ -148,7 +148,7 @@
      - 以顺序写入的方式为主，占比几乎都超过百分之八十，绝大多数都超过百分之九十。
      - 综合figure8与figure9，得出结论：大量的任务包含单纯的顺序访问。
 - FIGURE7:
-   <img src="file_size_distribution_percentage_multiple_files_sizes-1.png" width="300" height="200"> 
+   <img src="file_size_distribution_percentage_multiple_files_sizes-1.png" width="750" height="500"> 
    - 标题： [File Size Distribution by Percentage for Each File] 
    - 横坐标：操作类型
    - 纵坐标：百分比
@@ -157,7 +157,7 @@
      - 此图显示了访问结束时每个大小范围的访问文件中的字节部分。文件大小的总和将出现在条形图的末尾。这个数字与总文件占用空间不同，因为文件的大小会随时间变化，并且重复访问的文件会被计算多次。   
      - 访问小文件的比例非常高。由figure4我们观察到对于sqlite类型的文件访问量很大，而正是是由于频繁使用存储首选项、设置和其他应用程序数据的.plist文件；这些文件通常只填充一到两个4 KB的页面。
 - FIGURE8:
-   <img src="file_size_distribution_percentage_multiple_files_times-1.png" width="300" height="200"> 
+   <img src="file_size_distribution_percentage_multiple_files_times-1.png" width="750" height="500"> 
    - 标题： [File Write Access Pattern] 
    - 横坐标：操作类型
    - 纵坐标：百分比
